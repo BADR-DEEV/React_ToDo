@@ -63,6 +63,7 @@ body {
     padding-bottom: 3px;
     border-radius: 5px;
     background-color: #ffeaa7;
+    cursor: pointer;
   }
   button span {
     background: #f1f5f8;
@@ -89,10 +90,6 @@ body {
 
   }
   
-  input[type=checkbox]:checked + li{
-    text-decoration: line-through;
-    
-  }
 
 
-  
+ 

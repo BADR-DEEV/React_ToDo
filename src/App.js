@@ -1,30 +1,48 @@
 import React, { useState } from "react";
 
+import TodoItem from "./Components/TodoItem";
 
-// const array = [];
 
-function App() {
+
+
+function App(props) {
+
+  function deleteItem(id){
+
+    SetText(pre => {
+     
+      return pre.filter(
+        (item, index)=>{
+          
+          return index !== id;
+          
+
+        }
+      )
+      
+    })
+
+
+
+
+
+
+  }
+
   const [Todo, SetTodo] = useState("");
-  const [Text, SetText] = useState(["Buy Milk" , "Buy Bread" , "Buy Eggs"]);
+  const [Text, SetText] = useState([]);
 
   function handeling(event) {
     const newValue = event.target.value;
     SetTodo(newValue);
   }
-
+  
   function handelClick() {
-    SetText((pre) => {
-      
-      return[...pre , Todo]
-
-
-
-    })
+    SetText((pre) => {      
+      return[...pre , Todo];
+    });
+    SetTodo("")
   }
-
-var bool = false;
-
-
 
 
   return (
@@ -33,7 +51,7 @@ var bool = false;
         <h1>To-Do list</h1>
       </div>
       <div className="form">
-        <input name = "text" onChange={handeling} type="text" />
+        <input name = "text" onChange={handeling} type="text" value = {Todo} />
         <button onClick={handelClick}>
           <span>add</span>
         </button>
@@ -42,12 +60,12 @@ var bool = false;
       <div>
       
         <ul>
-          
-      {Text.map((x) =>
-        
-   
-      <li><input type ="checkbox"></input>{x}</li>
-        )}
+        {Text.map((todoItem , index)=> (
+          <TodoItem key = {index} id = {index} text = {todoItem} onChecked = {deleteItem} />
+
+        ))}
+         
+     
         </ul>
       </div>
     </div>
